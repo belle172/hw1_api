@@ -6,7 +6,6 @@
 
 # imports 
 from flask import Flask, request, jsonify
-from datatime import datetime 
 
 # initialize variables 
 app = Flask(__name__)
