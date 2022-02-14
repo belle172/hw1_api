@@ -58,7 +58,7 @@ def addTask():
    # check if category is already in list of categories, if not add it 
    if newCategory not in categories: 
       categories.append(newCategory) 
-   return jsonify({"tasks":task});
+   return jsonify({"tasks":newTask});
 
 # remove a task from the dictionary of tasks 
 @app.route('/planner/removeTask',methods = ['POST'])
