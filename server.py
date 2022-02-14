@@ -66,7 +66,11 @@ def removeTask():
    global tasks 
    task = request.get_json(force=True) 
    for (key, value) in task.items(): 
-      tasks[key].remove(value) 
+      # check if there is only one task for this category in the dictionary 
+      if isinstance(tasks.get(key), str): 
+         tasks.pop(key)
+      else: # otherwise there is several elements and the category is a list so use remove() 
+         tasks[key].remove(value) 
    return jsonify({"tasks":task});
 
 if __name__ == '__main__':
