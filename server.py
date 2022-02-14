@@ -34,6 +34,7 @@ def getCategory():
       categoryTasks = ["no tasks in the requested category"]
    return jsonify({"tasks":categoryTasks});
 
+# adds a category to the list of categories 
 @app.route('/planner/addCategory',methods = ['POST'])
 def addCategory():
    global categories 
@@ -41,24 +42,27 @@ def addCategory():
    categories.append(category) 
    return jsonify({"categories":category});
 
+# add one task to the dictionary of tasks 
 @app.route('/planner/addTask',methods = ['POST'])
 def addTask():
    global tasks 
    global categories 
-   task = request.get_json(force=True) 
-   [category, currentTask] = task 
-   tasks[category].append(currentTask)
+   newTask = request.get_json(force=True) 
+   for (key, value) in newTask: 
+      tasks[key].append(value)
+      newCategory = key 
    # check if category is already in list of categories, if not add it 
-   if category not in categories: 
-      categories.append(category) 
+   if newCategory not in categories: 
+      categories.append(newCategory) 
    return jsonify({"tasks":task});
 
+# remove a task from the dictionary of tasks 
 @app.route('/planner/removeTask',methods = ['POST'])
 def removeTask():
    global tasks 
    task = request.get_json(force=True) 
-   (category, currentTask) = task 
-   tasks[category].remove(currentCategory) 
+   for (key, value) in task: 
+      tasks[category].remove(currentCategory) 
    return jsonify({"tasks":task});
 
 if __name__ == '__main__':
