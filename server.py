@@ -49,7 +49,11 @@ def addTask():
    global categories 
    newTask = request.get_json(force=True) 
    for (key, value) in newTask.items(): 
-      tasks[key].append(value)
+      # if category is already in dictionary add it to the list 
+      if key in tasks.keys(): 
+         tasks[key] = [tasks.get(key), value]
+      else: # if its a new category
+         tasks[key] = value 
       newCategory = key 
    # check if category is already in list of categories, if not add it 
    if newCategory not in categories: 
