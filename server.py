@@ -66,7 +66,7 @@ def removeTask():
    global tasks 
    task = request.get_json(force=True) 
    for (key, value) in task.items(): 
-      tasks[category].remove(currentCategory) 
+      tasks[key].remove(value) 
    return jsonify({"tasks":task});
 
 if __name__ == '__main__':
