@@ -48,7 +48,7 @@ def addTask():
    global tasks 
    global categories 
    newTask = request.get_json(force=True) 
-   for (key, value) in newTask: 
+   for (key, value) in newTask.items(): 
       tasks[key].append(value)
       newCategory = key 
    # check if category is already in list of categories, if not add it 
@@ -61,7 +61,7 @@ def addTask():
 def removeTask():
    global tasks 
    task = request.get_json(force=True) 
-   for (key, value) in task: 
+   for (key, value) in task.items(): 
       tasks[category].remove(currentCategory) 
    return jsonify({"tasks":task});
 
