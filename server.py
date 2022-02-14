@@ -11,7 +11,7 @@ from datatime import datetime
 # initialize variables 
 app = Flask(__name__)
 categories = [] # list 
-tasks = {}      # dictionary  
+tasks = {"csci3081": "hw1"}      # dictionary  
 
 # returns the list of categories 
 @app.route('/planner/getCategories',methods = ['GET'])
