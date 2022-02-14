@@ -29,12 +29,9 @@ def getCategory():
    categoryTasks = [] 
    currentCategory = request.get_json(force=True) 
    if currentCategory in tasks: 
-      categoryTasks = tasks(currentCategory)
-
-   # for (category, task) in tasks 
-   #    if category == currentCategory: 
-   #       categoryTasks.append(task)
-
+      categoryTasks = tasks[currentCategory]
+   else: 
+      categoryTasks = ["no tasks in the requested category"]
    return jsonify({"tasks":categoryTasks});
 
 @app.route('/planner/addCategory',methods = ['POST'])
@@ -48,8 +45,8 @@ def addCategory():
 def addTask():
    global tasks 
    global categories 
-   task = request.get_json() 
-   (category, currentTask) = task 
+   task = request.get_json(force=True) 
+   [category, currentTask] = task 
    tasks[category].append(currentTask)
    # check if category is already in list of categories, if not add it 
    if category not in categories: 
